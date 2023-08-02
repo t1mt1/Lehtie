@@ -5,16 +5,8 @@ class Player(pygame.sprite.Sprite):
 		super().__init__()
 		self.attack_animation = False
 		self.sprites = []
-		self.sprites.append(pygame.image.load('attack_1.png'))
-		self.sprites.append(pygame.image.load('attack_2.png'))
-		self.sprites.append(pygame.image.load('attack_3.png'))
-		self.sprites.append(pygame.image.load('attack_4.png'))
-		self.sprites.append(pygame.image.load('attack_5.png'))
-		self.sprites.append(pygame.image.load('attack_6.png'))
-		self.sprites.append(pygame.image.load('attack_7.png'))
-		self.sprites.append(pygame.image.load('attack_8.png'))
-		self.sprites.append(pygame.image.load('attack_9.png'))
-		self.sprites.append(pygame.image.load('attack_10.png'))
+		self.sprites.append(pygame.image.load('happy1.png'))
+		self.sprites.append(pygame.image.load('happy2.png'))
 		self.current_sprite = 0
 		self.image = self.sprites[self.current_sprite]
 
@@ -38,20 +30,16 @@ pygame.init()
 clock = pygame.time.Clock()
 
 # Game Screen
-screen_width = 400
-screen_height = 400
+screen_width = 700
+screen_height = 700
 screen = pygame.display.set_mode((screen_width,screen_height))
 pygame.display.set_caption("Sprite Animation")
 
 # Creating the sprites and groups
 moving_sprites = pygame.sprite.Group()
-#player = Player(100, 100)
-#moving_sprites.add(player)
-player_list = []
-for i in range(10):
-	player = Player(randint(1, 400), randint(1, 400))
-	moving_sprites.add(player)
-	player_list.append(player)
+player = Player(0, 0)
+moving_sprites.add(player)
+
 
 while True:
 	for event in pygame.event.get():
@@ -59,8 +47,7 @@ while True:
 			pygame.quit()
 			sys.exit()
 		if event.type == pygame.KEYDOWN:
-			for i in range(10):
-				player_list[i].attack()
+			player.attack()
 
 	# Drawing
 	screen.fill((0,0,0))
